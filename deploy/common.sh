@@ -8,12 +8,13 @@ readonly KUBECTL="${GCE_PD_KUBECTL:-kubectl}"
 # Common functions
 
 function ensure_var(){
-    if [[ -v "${1}" ]];
+    var="$1"
+    if [[ -z "${!var+x}" ]];
     then
-        echo "${1} is ${!1}"
-    else
-        echo "${1} is unset"
+        echo " $var is unset"
         exit 1
+    else
+    echo "$var is ${!var}"
     fi
 }
 

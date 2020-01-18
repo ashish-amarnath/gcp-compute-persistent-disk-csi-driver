@@ -63,7 +63,7 @@ then
 	fi
 	# Delete ALL EXISTING Bindings
 	gcloud projects get-iam-policy "${PROJECT}" --format json > "${PKGDIR}/deploy/iam.json"
-	sed -i "/serviceAccount:${IAM_NAME}/d" "${PKGDIR}/deploy/iam.json"
+	sed -i'.orig' "/serviceAccount:${IAM_NAME}/d" "${PKGDIR}/deploy/iam.json"
 	gcloud projects set-iam-policy "${PROJECT}" "${PKGDIR}/deploy/iam.json"
 	rm -f "${PKGDIR}/deploy/iam.json"
 	# Delete Service Account
